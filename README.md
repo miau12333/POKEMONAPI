@@ -1,2 +1,2 @@
 # POKEMONAPI
-LINK de netlify  https://frabjous-quokka-a9fc80.netlify.app/
+LINK de netlify https://pokeapi-tg.netlify.app/
