@@ -45,7 +45,17 @@ const Pokedex = () => {
     
     const totalPages = Math.ceil(pokemones.length / pokemonsPerPage )
     const pagesNumbers = [];
-    for (let i= 1; i <= totalPages; i++){
+    const [num, setNum] = useState(1);
+    const [lastnum, setLastnum] = useState(10);
+    const nextnum = () => {
+        setNum(num+10);
+        setLastnum(lastnum+10);
+    }
+    const prevnum = () => {
+        setNum(num-10);
+        setLastnum(lastnum-10);
+    }
+    for (let i= num; i <= lastnum; i++){
         pagesNumbers.push(i)
     }
     useEffect
@@ -88,8 +98,8 @@ const Pokedex = () => {
                 }
             </ul>
             <div className='pagination'>
-            <button className='pagination-btn' onClick={() => setPage(page-1)}
-            disabled={page === 1 }><span class="material-symbols-outlined">   arrow_back_ios</span>
+            <button className='pagination-btn' onClick={() => prevnum()}
+            disabled={num === 1 }><span class="material-symbols-outlined">   arrow_back_ios</span>
             </button>
             <div>
             {
@@ -98,8 +108,8 @@ const Pokedex = () => {
                 ))
             }
             </div>
-            <button className='pagination-btn' onClick={() => setPage(page+1)}
-            disabled={page === totalPages}><span class="material-symbols-outlined"> arrow_forward_ios </span>
+            <button className='pagination-btn' onClick={() => nextnum()}
+            disabled={totalPages <= lastnum}><span class="material-symbols-outlined"> arrow_forward_ios </span>
             </button>
             </div>
         </div>
